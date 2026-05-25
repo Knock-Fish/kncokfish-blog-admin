@@ -1,0 +1,50 @@
+// sacc 混合宏（函数）
+@use "./variables.scss" as *;
+
+@mixin element_display($mode) {
+    @media screen and (max-width: $screen-medium) {
+        display: $mode;
+    }
+}
+
+/** 小图标按钮 */
+@mixin icon-button() {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    border: none;
+}
+
+/** 路由页面 */
+@mixin page() {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 125px);
+}
+
+/** flex居中 */
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/** 毛玻璃效果 */
+@mixin frosted-glass() {
+    color: var(--text-color);
+    border-radius: 7px;
+    background: var(--card-color);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/** 卡片 **/
+@mixin card() {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}

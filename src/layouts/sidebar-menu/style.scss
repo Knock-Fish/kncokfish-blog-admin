@@ -1,0 +1,67 @@
+@use '@style/variables.scss' as *;
+
+.el-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10000;
+    // ???
+    // user-select: none;
+    // scrollbar-width: none;
+    overflow: hidden;
+
+    .el-menu-item {
+        color: #000;
+    }
+
+    .logo {
+        display: flex;
+        height: 60px;
+        font-size: 20px;
+        color: #000000;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 36px;
+            height: 36px;
+        }
+
+        p {
+            color: var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: opacity 0.2s;
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    z-index: 800;
+}
+
+@media screen and (max-width: $menu-medium) {
+    .el-menu--collapse {
+        width: 0px;
+    }
+
+    .modal {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media screen and (min-width: $menu-larger) {
+    .el-menu--collapse {
+        width: 70px;
+    }
+}
+
+.el-menu:not(.el-menu--collapse) {
+    width: 240px;
+}

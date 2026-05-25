@@ -1,0 +1,37 @@
+// 媒体查询尺寸
+// mobile
+$screen-small: 400px;
+// 竖屏
+$screen-medium: 768px;
+// notebook
+$screen-larger: 1200px;
+// 菜单尺寸
+$menu-medium: 800px;
+$menu-larger: 1024px;
+
+// Light 主题变量
+:root {
+    --header-color: #ffffff;
+    --bg-color: #fafbfc;
+    --text-color: #4B5675;
+    --card-color: #ffffff;
+    --border-color: #eaebf1;
+    --icon-color: #9A9CAE;
+    // --hover-icon: #f0f0f0;  
+    --hover-bg-color: #f0f0f0;
+}
+
+// Dark 主题变量
+html.dark {
+    --header-color: #141414;
+    --bg-color: #000000;
+    --text-color: #B5B7C8;
+    --card-color: #161618;
+    --border-color: #3e3e3e;
+    --icon-color: #9A9CAE;
+    --hover-bg-color: #27272b;
+
+    --w-e-textarea-bg-color: #161618;
+    --w-e-textarea-color: #fff;
+    --w-e-toolbar-bg-color: #161618;
+}

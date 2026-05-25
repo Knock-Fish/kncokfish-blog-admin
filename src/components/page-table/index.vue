@@ -1,0 +1,106 @@
+<template>
+    <ElCard class="card-tag" shadow="never">
+        <template #header v-if="slotHeader">
+            <slot :name="slotHeader"></slot>
+        </template>
+        <ElTable :data="tableData" height="100%">
+            <template v-for="item in columns" :key="item.prop">
+                <!-- 选择列 -->
+                <ElTableColumn v-if="item.type === 'selection'"
+                    type="selection" min-width="40" />
+
+                <!-- 序号列 -->
+                <ElTableColumn v-else-if="item.type === 'index'" type="index"
+                    :width="item.width || '80'" :label="item.label || '序号'" />
+
+                <!-- 普通列 -->
+                <ElTableColumn v-else-if="!item.permission" :prop="item.prop" :label="item.label" :show-overflow-tooltip="item.showOverflowTooltip"
+                    :width="item.width" :min-width="item.minWidth"
+                    :align="item.align || 'left'" :fixed="item.fixed"
+                    :formatter="item.formatter">
+                    <!-- 自定义列内容 -->
+                    <template #default="scope" v-if="item.slot">
+                        <slot :name="item.slot" :row="scope.row"></slot>
+                    </template>
+                </ElTableColumn>
+            </template>
+        </ElTable>
+        <template #footer>
+            <div
+                style="display: flex; justify-content: center; align-items: center;">
+                <el-pagination background layout="prev, pager, next"
+                    :total="page.total" 
+                    v-model:page-size="page.pageSize"
+                    v-model:current-page="page.pageNum"
+                    @update:current-page="handleCurrentPageChange"
+                    @update:page-size="handlePageSizeChange">
+                </el-pagination>
+            </div>
+        </template>
+    </ElCard>
+</template>
+
+<script setup lang='ts'>
+import { ElTable } from 'element-plus'
+
+// 定义类型接口
+interface TableColumn {
+    type?: string
+    prop?: string
+    label?: string
+    width?: string | number
+    minWidth?: string | number
+    slot?: string
+    fixed?: string | boolean    // 'left' | 'right'
+    align?: string  // 'left' | 'center' | 'right'
+    showOverflowTooltip?: boolean
+    formatter?: Function
+    permission?:boolean
+}
+interface TableData {
+    [key: string]: any
+}
+const porps = withDefaults(defineProps<{
+    columns: TableColumn[]
+    tableData: TableData[]
+    slotHeader?: string
+    page?: {
+        total?: number
+        pageNum: number
+        pageSize: number
+    }
+}>(), {
+    page: () => ({ total: 0, pageNum: 1, pageSize: 10 })
+})
+const emit = defineEmits<{
+    (e: 'currentPage', page: number): void
+    (e: 'pageSize', size: number): void
+}>()
+/** 更新当前页面 */
+const handleCurrentPageChange = (newPage: number): void => {
+    porps.page.pageNum = newPage
+    emit("currentPage", newPage)
+}
+/** 更新当前页条数 */
+const handlePageSizeChange = (newSize: number): void => {
+    porps.page.pageSize = newSize
+    porps.page.pageNum = 1
+    emit("pageSize", newSize)
+}
+</script>
+
+<style lang="scss" scoped>
+.card-tag {
+    padding: 0 10px;
+    border-radius: 10px;
+    transition: none;
+
+    .table-header {
+        margin-bottom: 20px;
+    }
+
+    .table-tag {
+        width: 100%;
+    }
+}
+</style>

@@ -1,0 +1,146 @@
+/* 优化Element plus组件库默认样式*/
+// 修改el-menu菜单的边框、背景
+.el-menu {
+     .el-menu-item {
+          border-bottom: none;
+          background-color: transparent !important;
+
+          &:hover {
+               background-color: transparent !important;
+          }
+     }
+
+     .is-active {
+          border: none !important;
+          background-color: transparent !important;
+     }
+}
+
+// // 优化菜单折叠展开动画（提升动画流畅度）
+// .el-menu.el-menu--inline {
+//      transition: max-height 0.26s cubic-bezier(0.4, 0, 0.2, 1) !important;
+// }
+
+// // 优化菜单 item hover 动画（提升鼠标跟手感）
+// .el-sub-menu__title,
+// .el-menu-item {
+//      transition: background-color 0s !important;
+// }
+
+.el-message {
+     z-index: 99999 !important;
+}
+
+.el-notification {
+     z-index: 99999 !important;
+}
+
+.el-popper {
+     z-index: 99999 !important;
+}
+
+// 去除el-button按钮的背景和边框
+// .el-button {
+//      background-color: transparent !important;
+//      border: none !important;
+// }
+
+// 去除el-input输入框的边框以及内部背景色
+// .el-input {
+//      .el-input__wrapper {
+//           background-color: transparent;
+//           box-shadow: none;
+//           padding: 0;
+//      }
+// }
+
+// 修改el-breadcrumb的样式
+.el-breadcrumb__item {
+     cursor: pointer;
+
+     .el-breadcrumb__inner {
+          font-size: 13px;
+          padding: 0 10px;
+          border-radius: 5px;
+          color: #78809D;
+
+          &.is-link {
+               font-weight: normal !important;
+          }
+
+          &:hover {
+               background-color: var(--hover-bg-color);
+          }
+     }
+
+     .el-breadcrumb__separator {
+          margin: 0 2px;
+     }
+}
+
+// 去除el-card的头部和尾部插槽的边框和内边距
+.el-card {
+     .el-card__header {
+          border: none;
+          padding: 20px;
+     }
+
+     .el-card__footer {
+          border: none;
+          padding: 13px;
+     }
+
+     .el-card__body {
+          padding: 0 20px;
+     }
+
+}
+
+// 修改el-table的字体大小
+.el-table {
+     font-size: 13px;
+
+     .cell {
+          font-size: 13px;
+
+     }
+
+     /* 表头字体 */
+     th.el-table__cell {
+          font-size: 13px;
+          font-weight: 600;
+     }
+
+     .el-table__row {
+          .el-table__cell {
+               padding: 3px;
+          }
+     }
+}
+
+// 修改 el-autocomplete 下拉框的层级
+.el-autocomplete__popper {
+     z-index: 10005 !important;
+}
+
+// 修改 el-select 下拉框的层级
+.el-select__popper {
+     z-index: 10005 !important;
+}
+
+// 修改el-tag
+.el-tag {
+     color: #7b7b7b !important;
+     // margin: 5px 5px;
+}
+
+.el-overlay {
+     z-index: 10000 !important;
+}
+
+.el-dialog .el-dialog__header.dialog-header {
+     padding: 0 !important;
+     padding-bottom: 0 !important;
+     margin: 0 !important;
+     border-bottom: none !important;
+}
